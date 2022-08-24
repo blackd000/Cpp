@@ -24,13 +24,18 @@ void printList() {
 }
 
 // update functions
-void addFirst(char *data) {
-	// tao vung nho cho newNode roi gan data cho no
+
+// tao vung nho cho newNode roi gan data cho no
+Node *createNode(char *data, Node *next) {
 	Node *newNode = (Node *) (malloc(sizeof(Node)));
 	newNode->data = data;
-	newNode->next = head;
+	newNode->next = next;
 
-	head = newNode;
+	return newNode;
+}
+
+void addFirst(char *data) {
+	head = createNode(data, head);
 
 	if (size++ == 0) {
 		tail = head;
@@ -38,9 +43,7 @@ void addFirst(char *data) {
 }
 
 void addLast(char *data) {
-	Node *newNode = (Node *) (malloc(sizeof(Node)));
-	newNode->data = data;
-	newNode->next = NULL;
+	Node *newNode = createNode(data, NULL);
 
 	if (size++ == 0) {
 		head = newNode;
