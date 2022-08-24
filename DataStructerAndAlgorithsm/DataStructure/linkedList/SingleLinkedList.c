@@ -24,7 +24,6 @@ void printList() {
 }
 
 // update functions
-
 // tao vung nho cho newNode roi gan data cho no
 Node *createNode(char *data, Node *next) {
 	Node *newNode = (Node *) (malloc(sizeof(Node)));
