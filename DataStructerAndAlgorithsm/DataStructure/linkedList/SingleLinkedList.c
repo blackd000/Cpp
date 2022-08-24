@@ -3,9 +3,9 @@
 
 struct node {
 	char *data;
-	node *next;
+	struct node *next;
 };
-typedef node Node;
+typedef struct node Node;
 
 Node *head = NULL;
 Node *tail = NULL;
@@ -60,10 +60,12 @@ int main() {
 	// add first
 	addFirst(name[0]);
 	addFirst(name[1]);
+	addFirst(name[2]);
 
 	// add last
-	addLast(name[2]);
 	addLast(name[3]);
+	addLast(name[4]);
+	addLast(name[5]);
 
 	printList();
 
