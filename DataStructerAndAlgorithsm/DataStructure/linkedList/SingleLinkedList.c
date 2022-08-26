@@ -53,6 +53,57 @@ void addLast(char *data) {
 	tail = newNode;
 }
 
+void addRandom(char *data, int index) {
+	
+}
+
+char *removeFirst() {
+	if (isEmpty()) {
+		return NULL;
+	}
+
+	Node *tempNode = head;
+	char *tempData = tempNode->data;
+
+	if (size-- == 1) {
+		head = head->next;
+		tail = head;
+	} else {
+		head = head->next;
+	}
+	
+	free(tempNode);
+	return tempData;
+}
+
+char *removeRandom(int index) {
+	if (isEmpty()) {
+		return NULL;
+	}
+
+	if (index == 0) {
+		return (removeFirst());
+	} else if (index > size) {
+		return NULL;
+	}
+
+	int i = 0;
+	Node *travel = head;
+	while (i++ < index - 1) {
+		travel = travel->next;
+	}
+
+	Node *tempNode = travel->next;
+	char *tempData = tempNode->data;
+
+	travel->next = tempNode->next;
+	size--;
+
+	free(tempNode);
+
+	return tempData;
+}
+
 int main() {
 	char name[10][100] = {
 		"Dong", "Tay", "Nam", "Bac", "Diep",
@@ -68,6 +119,13 @@ int main() {
 	addLast(name[3]);
 	addLast(name[4]);
 	addLast(name[5]);
+
+	// remove first
+	printf("Tao vua vua xoa(remove first): %s\n", removeFirst());
+	printf("Tao vua vua xoa(remove first): %s\n", removeFirst());
+
+	// remove random
+	printf("Tao vua xoa(remove random): %s\n", removeRandom(2));
 
 	printList();
 
