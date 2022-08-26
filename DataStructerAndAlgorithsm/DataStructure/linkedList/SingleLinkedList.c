@@ -53,10 +53,6 @@ void addLast(char *data) {
 	tail = newNode;
 }
 
-void addRandom(char *data, int index) {
-	
-}
-
 char *removeFirst() {
 	if (isEmpty()) {
 		return NULL;
