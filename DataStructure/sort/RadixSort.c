@@ -7,11 +7,12 @@ int maxValue(int*, int);
 void printArray(int*, int);
 
 int main() {
-	/* int data[] = { 5, 2, 7, 4, 2, 2 }; // n = 6 */
-	int data[] = { 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 }; // n = 9
+	/* int data[] = { 5, 2891, 78, 4, 2, 2 }; // n = 6 */
+	int data[] = { 77, 100, 99 }; // n = 3
+	/* int data[] = { 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 }; // n = 9 */
 	/* int data[] = { -1012, -5221, -921, -2212, -3234, -4753, -3417, -1532, -1020 }; // n = 9 */
 
-	int n = 9;
+	int n = 3;
 
 	printArray(data, n);
 	sort(data, n);
@@ -34,7 +35,6 @@ void sort(int* data, int n) {
 
 	if (index1 > 0) {
 		radixSort(negativeData, index1);
-
 		for (int i = index1 - 1, j = 0; i >= 0; i--, j++) {
 			data[j] = -negativeData[i];
 		}
@@ -50,7 +50,7 @@ void sort(int* data, int n) {
 
 void radixSort(int* data, int n) {
 	int max = maxValue(data, n);
-	for (int exp = 1; max > exp; exp *= 10) {
+	for (int exp = 1; max/exp != 0; exp *= 10) {
 		countingSort(data, n, exp);
 	}
 }
