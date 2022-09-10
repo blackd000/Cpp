@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-#define RANGE 1001
-
+void testCountingSort();
+void getData(int*, int*, int);
 void countSort1(int*, int);
 void countSort2(int*, int);
 int maxValue(int*, int);
@@ -10,17 +10,77 @@ int minValue(int*, int);
 void printArray(int*, int);
 
 int main() {
-	/* int data[] = { 1, 2, 1, 1 }; // n = 4 */
-	/* int data[] = { 5, 2, 7, 4, -2, 2 }; // n = 6 */
-	int data[] = { 5, 2, -5, 8, 7, -2, 2, 3, 3, 6, 2, 6, -1, 1, 2, 7, -2, 5, 2, 4, 9 }; // n = 21
-	/* int data[] = { 1, 10000, 200 }; // n = 3 */
-	int n = 21;
-
-	printArray(data, n);
-	countSort2(data, n);
-	printArray(data, n);
+	testCountingSort();
 
 	return 0;
+}
+
+void testCountingSort() {
+	int data[100];
+	int n;
+
+	while (true) {
+		system("clear"); // system("cls") for windows
+		printf("\t**********Input Data**********\n");
+		printf("1) data = [ 1, 2, 1, 1 ]\n");
+		printf("2) data = [ 5, 2, 7, 4, -2, 2 ]\n");
+		printf("3) data = [ 5, 2, -5, 8, 7, -2, 2, 3, 3, 6, 2, 6, -1, 1, 2, 7, -2, 5, 2, 4, 9 ]\n");
+		printf("4) data = [ 1, 10000, 200 ]\n");
+		printf("0) Exit\n");
+		printf("\t******************************\n");
+
+		int input;
+		printf("Xin lua chon: ");
+		scanf("%d", &input);
+
+		switch (input) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			getData(data, &n, input);
+
+			printArray(data, n);
+			countSort2(data, n);
+			printArray(data, n);
+
+			break;
+		case 0:
+			return;
+		default:
+			printf("Nhap lai di!!\n");
+		}
+
+		printf("Press any key to continue...");
+		getchar(); getchar(); // system("pause") for windows
+	}
+}
+
+void getData(int* data, int* n, int number) {
+	FILE* inputFile = NULL;
+	if ((inputFile = fopen("testCountingSort.txt", "r")) == NULL) {
+		printf("LOI INPUT FILE!!!!!\n");
+		return;
+	}
+
+	int i = 1;
+	while (i++ < number) {
+		int j = 0, j2, buff;
+		fscanf(inputFile, "%d", &buff);
+		while (j < buff && fscanf(inputFile, "%d", &j2) != EOF) {
+			j++;
+		}
+	}
+
+	fscanf(inputFile, "%d", n);
+	/* printf("%d\n", *n); */
+
+	int i2 = 0, buff2;
+	while (i2 < *n && fscanf(inputFile, "%d", &buff2) != EOF) {
+		data[i2++] = buff2;
+	}
+
+	fclose(inputFile);
 }
 
 void countSort1(int* data, int n) {
@@ -58,7 +118,7 @@ void countSort2(int* data, int n) {
 		countArray[i] += countArray[i - 1];
 	}
 
-	int output[n]; // luu tru stored values
+	int output[n]; 
 	for (int i = n - 1; i >= 0; i--) {
 		int positionInArray = countArray[data[i] - min] - 1;
 		output[positionInArray] = data[i];

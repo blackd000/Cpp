@@ -8,11 +8,11 @@ void printArray(int*, int);
 
 int main() {
 	/* int data[] = { 5, 2891, 78, 4, 2, 2 }; // n = 6 */
-	int data[] = { 77, 100, 99 }; // n = 3
-	/* int data[] = { 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 }; // n = 9 */
+	/* int data[] = { 77, 100, 99 }; // n = 3 */
+	int data[] = { 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 }; // n = 9
 	/* int data[] = { -1012, -5221, -921, -2212, -3234, -4753, -3417, -1532, -1020 }; // n = 9 */
 
-	int n = 3;
+	int n = 9;
 
 	printArray(data, n);
 	sort(data, n);
@@ -59,7 +59,6 @@ void countingSort(int* data, int n, int exp) {
 	const int MAX = 10;
 	int countArray[MAX] = { 0 };
 
-	// index = value - min
 	for (int i = 0; i < n; i++) {
 		countArray[(data[i] / exp) % 10]++;
 	}
