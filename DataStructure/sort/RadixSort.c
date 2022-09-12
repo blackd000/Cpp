@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+void testRadixSort();
+void getData(int*, int*, int);
 void sort(int*, int);
 void radixSort(int*, int);
 void countingSort(int*, int, int);
@@ -7,18 +10,77 @@ int maxValue(int*, int);
 void printArray(int*, int);
 
 int main() {
-	/* int data[] = { 5, 2891, 78, 4, 2, 2 }; // n = 6 */
-	/* int data[] = { 77, 100, 99 }; // n = 3 */
-	int data[] = { 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 }; // n = 9
-	/* int data[] = { -1012, -5221, -921, -2212, -3234, -4753, -3417, -1532, -1020 }; // n = 9 */
-
-	int n = 9;
-
-	printArray(data, n);
-	sort(data, n);
-	printArray(data, n);
+	testRadixSort();
 
 	return 0;
+}
+
+void testRadixSort() {
+	int data[100];
+	int n;
+
+	while (true) {
+		system("clear"); // system("cls") for windows
+		printf("\t**********Input Data**********\n");
+		printf("1) data = [ 77, 100, 99 ]\n");
+		printf("2) data = [ 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 ]\n");
+		printf("3) data = [ 5, 2891, 78, 4, 2, 2 ]\n");
+		printf("4) data = [ -1012, -5221, -921, -2212, -3234, -4753, -3417, -1532, -1020 ]\n");
+		printf("0) Exit\n");
+		printf("\t******************************\n");
+
+		int input;
+		printf("Xin lua chon: ");
+		scanf("%d", &input);
+
+		switch (input) {
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			getData(data, &n, input);
+
+			printArray(data, n);
+			sort(data, n);
+			printArray(data, n);
+
+			break;
+		case 0:
+			return;
+		default:
+			printf("Nhap lai di!!\n");
+		}
+
+		printf("Press any key to continue...");
+		getchar(); getchar(); // system("pause") for windows
+	}
+}
+
+void getData(int* data, int* n, int number) {
+	FILE* inputFile = NULL;
+	if ((inputFile = fopen("testRadixSort.txt", "r")) == NULL) {
+		printf("LOI INPUT FILE!!!!!\n");
+		return;
+	}
+
+	int i = 1;
+	while (i++ < number) {
+		int j = 0, j2, buff;
+		fscanf(inputFile, "%d", &buff);
+		while (j < buff && fscanf(inputFile, "%d", &j2) != EOF) {
+			j++;
+		}
+	}
+
+	fscanf(inputFile, "%d", n);
+	/* printf("%d\n", *n); */
+
+	int i2 = 0, buff2;
+	while (i2 < *n && fscanf(inputFile, "%d", &buff2) != EOF) {
+		data[i2++] = buff2;
+	}
+
+	fclose(inputFile);
 }
 
 void sort(int* data, int n) {
