@@ -22,10 +22,11 @@ void testRadixSort() {
 	while (true) {
 		system("clear"); // system("cls") for windows
 		printf("\t**********Input Data**********\n");
-		printf("1) data = [ 77, 100, 99 ]\n");
-		printf("2) data = [ 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 ]\n");
-		printf("3) data = [ 5, 2891, 78, 4, 2, 2 ]\n");
-		printf("4) data = [ -1012, -5221, -921, -2212, -3234, -4753, -3417, -1532, -1020 ]\n");
+		printf("1) data = [ 369, 512, 711, 982, 147, 565, 911, 769 ]\n");
+		printf("2) data = [ 77, 100, 99 ]\n");
+		printf("3) data = [ 1012, -5221, 921, 2212, -3234, 4753, 3417, 1532, 1020 ]\n");
+		printf("4) data = [ 5, 2891, 78, 4, 2, 2 ]\n");
+		printf("5) data = [ -1012, -5221, -921, -2212, -3234, -4753, -3417, -1532, -1020 ]\n");
 		printf("0) Exit\n");
 		printf("\t******************************\n");
 
@@ -38,6 +39,7 @@ void testRadixSort() {
 		case 2:
 		case 3:
 		case 4:
+		case 5:
 			getData(data, &n, input);
 
 			printArray(data, n);
