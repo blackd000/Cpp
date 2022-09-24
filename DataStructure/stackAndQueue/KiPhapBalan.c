@@ -6,7 +6,7 @@ int isCorrectExpression(const char*);
 int checkChar(const char*, char);
 
 int main() {
-	const char* expression = "()";
+	const char* expression = "5 + [(9 * 3) - 18]";
 
 	printf("%d", isCorrectExpression(expression));
 
