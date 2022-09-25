@@ -18,7 +18,8 @@ int isCorrectExpression(const char* expression) {
 	const char* close = ")]}";
 	ArrayStack* arrayStack = createStack();
 
-	for (int i = 0; i < strlen(expression); i++) {
+	int n = strlen(expression);
+	for (int i = 0; i < n; i++) {
 		if (checkChar(open, expression[i]) != -1) {
 			push(arrayStack, expression[i]);
 		} else if (checkChar(close, expression[i]) != -1) {
