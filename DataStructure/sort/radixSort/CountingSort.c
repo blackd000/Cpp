@@ -19,7 +19,7 @@ void testCountingSort() {
 	int data[100];
 	int n;
 
-	while (true) {
+	while (1) {
 		system("clear"); // system("cls") for windows
 		printf("\t**********Input Data**********\n");
 		printf("1) data = [ 1, 2, 1, 1 ]\n");
@@ -86,7 +86,7 @@ void getData(int* data, int* n, int number) {
 void countSort1(int* data, int n) {
 	int max = maxValue(data, n), min = minValue(data, n);
 	const int MAX = max - min + 1;
-	int countArray[MAX] = { 0 };
+	int* countArray = (int*) (calloc(MAX, sizeof(int)));
 
 	// index = value - min
 	for (int i = 0; i < n; i++) {
@@ -101,12 +101,14 @@ void countSort1(int* data, int n) {
 			countArray[i]--;
 		}
 	}
+
+	free(countArray);
 }
 
 void countSort2(int* data, int n) {
 	int max = maxValue(data, n), min = minValue(data, n);
 	const int MAX = max - min + 1;
-	int countArray[MAX] = { 0 };
+	int* countArray = (int*) (calloc(MAX, sizeof(int)));
 
 	// index = value - min
 	for (int i = 0; i < n; i++) {
@@ -128,6 +130,8 @@ void countSort2(int* data, int n) {
 	for (int i = 0; i < n; i++) {
 		data[i] = output[i];
 	}
+
+	free(countArray);
 }
 
 int maxValue(int* data, int n) {

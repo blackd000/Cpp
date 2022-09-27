@@ -19,7 +19,7 @@ void testRadixSort() {
 	int data[100];
 	int n;
 
-	while (true) {
+	while (1) {
 		system("clear"); // system("cls") for windows
 		printf("\t**********Input Data**********\n");
 		printf("1) data = [ 369, 512, 711, 982, 147, 565, 911, 769 ]\n");
@@ -121,7 +121,7 @@ void radixSort(int* data, int n) {
 
 void countingSort(int* data, int n, int exp) {
 	const int MAX = 10;
-	int countArray[MAX] = { 0 };
+	int* countArray = (int*) (calloc(MAX, sizeof(int)));
 
 	for (int i = 0; i < n; i++) {
 		countArray[(data[i] / exp) % 10]++;
@@ -141,6 +141,8 @@ void countingSort(int* data, int n, int exp) {
 	for (int i = 0; i < n; i++) {
 		data[i] = output[i];
 	}
+
+	free(countArray);
 }
 
 int maxValue(int* data, int n) {
