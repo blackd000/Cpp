@@ -65,10 +65,16 @@ void deleteQueue(ArrayQueue* Q) {
 }
 
 void printQueue(ArrayQueue* Q) {
-	for (int i = Q->front; i != Q->rear; i = (i + 1) % Q->capacity) {
-		printf("%d ", Q->array[i]);
+	if (isEmptyQueue(Q)) {
+		printf("Exception: Queue is empty!!");
+		return;
 	}
-	printf("%d ", Q->array[Q->rear]);
+
+	do {
+		printf("%d ", Q->array[Q->front]);
+
+		Q->front = (Q->front + 1) % Q->capacity;
+	} while (Q->front != (Q->rear + 1) % Q->capacity);
 }
 
 /* int main() { */
@@ -82,7 +88,7 @@ void printQueue(ArrayQueue* Q) {
 /* 	enQueue(testQ, 9); */
 
 /* 	// dequeue data */
-/* 	/1* deQueue(testQ); *1/ */
+/* 	deQueue(testQ); */
 
 /* 	printQueue(testQ); */
 /* } */
