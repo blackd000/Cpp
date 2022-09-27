@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "StackArray.c"
+#include "ArrayStack.h"
 
 int isCorrectExpression(const char*);
 int checkChar(const char*, char);
