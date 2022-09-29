@@ -54,10 +54,10 @@ void insertElement(BinaryTreeNode *root, int data) {
 	deleteQueue(Q);
 }
 
-void preOrder(BinaryTreeNode *root, const char *position) {
+void preOrderDLR(BinaryTreeNode *root, const char *position) {
 	if (root) {
 		printf("%s -> %d\n", position, root->data);
-		preOrder(root->left, "left");
-		preOrder(root->right, "right");
+		preOrderDLR(root->left, "left");
+		preOrderDLR(root->right, "right");
 	}
 }
