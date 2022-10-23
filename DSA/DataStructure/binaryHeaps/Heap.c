@@ -9,25 +9,16 @@ struct heap {
 };
 typedef struct heap Heap;
 
+// Time Complexity: O(1).
 Heap *createHeap(int capacity, int heapType) {
 	Heap *tempHeap = (Heap *) malloc(sizeof(Heap));
 
 	tempHeap->capacity = capacity;
 	tempHeap->heapType = heapType;
 	tempHeap->count = 0;
-
 	tempHeap->array = (int *) malloc(capacity * sizeof(int));
 
 	return tempHeap;
-}
-
-void insertHeap(Heap *h, int value) {
-	if (!h) {
-		printf("Empty Head!!\n");
-		return;
-	}
-
-	h->array[h->count++] = value;
 }
 
 void printHeap(Heap *h) {
@@ -37,6 +28,7 @@ void printHeap(Heap *h) {
 }
 
 // all the i for index
+// Time Complexity: O(1).
 int parent(Heap *h, int i) {
 	if (i <= 0 || i > h->count - 1) {
 		/* printf("Parent is not exist!!\n"); */
@@ -46,6 +38,7 @@ int parent(Heap *h, int i) {
 	return ((i - 1) / 2);
 }
 
+// Time Complexity: O(1).
 int leftChild(Heap *h, int i) {
 	if (i * 2 + 1 > h->count - 1) {
 		/* printf("Left child is not exist!!\n"); */
@@ -55,6 +48,7 @@ int leftChild(Heap *h, int i) {
 	return (i * 2 + 1);
 }
 
+// Time Complexity: O(1).
 int rightChild(Heap *h, int i) {
 	if (i * 2 + 2 > h->count - 1) {
 		/* printf("Right child is not exist!!\n"); */
@@ -72,44 +66,37 @@ int getMaximum(Heap *h) {
 	return (h->array[0]);
 }
 
-void percolateDown(Heap *h, int i) {
-	int maxIndex = i;
-
+// percolate down (heapify) the element at location i
+// Time Complexity: O(logn). Heap is a complete binary tree and in the worst case we 
+// start at the root and  come down to the leaf. This is equal to the height of the 
+// complete binary tree. Space Complexity: O(1)
+void heapify(Heap *h, int i) {
+	// get index of left child and right child
 	int left = leftChild(h, i);
 	int right = rightChild(h, i);
 
-	if (left != -1 && h->array[left] > h->array[maxIndex]) {
-		maxIndex = left;
-	} 
-
-	if (right != -1 && h->array[right] > h->array[maxIndex]) {
-		maxIndex = right;
+	// check max of left child and right child
+	int max = i;
+	if (left != -1 && h->array[left] > h->array[max]) {
+		max = left;
+	}
+	if (right != -1 && h->array[right] > h->array[max]) {
+		max = right;
 	}
 
-	if (maxIndex != i) {
+	// if found max (has left or right) then swap current node with its child
+	if (max != i) {
 		int temp = h->array[i];
-		h->array[i] = h->array[maxIndex];
-		h->array[maxIndex] = temp;
+		h->array[i] = h->array[max];
+		h->array[max] = temp;
 
-		percolateDown(h, maxIndex);
+		// after swap, continue to heapify (percolate down) until this element 
+		// is satisfies the heap properties
+		heapify(h, max);
 	}
 }
 
-int deleteMax(Heap *h) {
-	if (h->count == 0) {
-		return -1;
-	}
-
-	int data = h->array[0];
-
-	h->array[0] = h->array[h->count - 1];
-	h->count--;
-
-	percolateDown(h, 0); // at 0 index
-
-	return data;
-}
-
+// Time complexity: O(logn)
 void percolateUp(Heap *h, int i) {
 	int parentIndex = parent(h, i);
 
@@ -122,6 +109,25 @@ void percolateUp(Heap *h, int i) {
 
 		percolateUp(h, parentIndex);
 	}
+}
+
+// *** NOTE: Deleting an element uses heapify (PercolateDown)
+// Time Complexity: same as Heapify function and it is O(logn).
+int deleteMax(Heap *h) {
+	if (h->count == 0) {
+		printf("heap is NULL\n");
+		return -1;
+	}
+
+	// swap the last element with the root and reduce the heap size
+	int data = h->array[0];
+	h->array[0] = h->array[h->count - 1];
+	h->count--;
+
+	// After replacing the last element, the tree may not satisfy the heap property. We heapify this element
+	heapify(h, 0); // at 0 index
+
+	return data;
 }
 
 void resizeHeap(Heap *h) {
@@ -137,6 +143,8 @@ void resizeHeap(Heap *h) {
 	free(oldArray);
 }
 
+// *** NOTE: Inserting an element uses percolateUp.
+// Time Complexity: O(logn). The explanation is the same as that of the Heapify function. 
 void insert(Heap *h, int value) {
 	if (h->count == h->capacity) {
 		resizeHeap(h);
@@ -173,7 +181,7 @@ void buildHeap(Heap *h, int array[], int n) {
 	h->count = n;
 
 	for (int i = (n - 1) / 2; i >= 0; i--) {
-		percolateDown(h, i);
+		heapify(h, i);
 	}
 }
 

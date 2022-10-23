@@ -22,7 +22,6 @@ Graph *adjMatrixGraph() {
 
 	// graph with the size of v * v
 	/* graph->adj = (int **) malloc(sizeof(int) * graph->v * graph->v); */
-
 	/* for (int i = 0; i < graph->v; i++) { */
 	/* 	for (int j = 0; j < graph->v; j++) { */
 	/* 		graph->adj[i][j] = 0; */
@@ -37,17 +36,17 @@ Graph *adjMatrixGraph() {
 	// read an edge
 	int u, v;
 	for (int i = 0; i < graph->e; i++) {
-		printf("Choose your edge\n");
 		do {
+			printf("\nChoose your %d edge\n", i + 1);
 			printf("First virtice: ");
 			scanf("%d", &u);
 			printf("Second virtice: ");
 			scanf("%d", &v);
 
-			if (graph->adj[u][v] == 1 && graph->adj[v][u] == 1) {
-				printf("Da co roi\n");
+			if (u >= graph->v || v >= graph->v || graph->adj[u][v] == 1 || graph->adj[v][u] == 1) {
+				printf("Nhap lai di!!\n");
 			}
-		} while (graph->adj[u][v] == 1 && graph->adj[v][u] == 1);
+		} while (u >= graph->v || v >= graph->v || graph->adj[u][v] == 1 || graph->adj[v][u] == 1);
 
 		// for undirect graph
 		graph->adj[u][v] = 1;

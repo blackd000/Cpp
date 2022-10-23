@@ -4,11 +4,11 @@
 int main() {
 	Heap *h = createHeap(10, 1);
 
-	insertHeap(h, 999);
-	insertHeap(h, 100);
-	insertHeap(h, 92);
-	insertHeap(h, 12);
-	insertHeap(h, 39);
+	insert(h, 3);
+	insert(h, 100);
+	insert(h, 24);
+	insert(h, 12);
+	insert(h, 39);
 
 	printHeap(h);
 
@@ -20,13 +20,8 @@ int main() {
 	/* percolateDown(h, 0); */
 
 	// delete max value of the heap
-	/* printHeap(h); */
-	/* printf("\nI just removed %d\n", deleteMax(h)); */
-	/* printHeap(h); */
-
 	printHeap(h);
-	printf("\nInsert 99\n");
-	insert(h, 99);
+	printf("\nI just removed %d\n", deleteMax(h));
 	printHeap(h);
 
 	return 0;

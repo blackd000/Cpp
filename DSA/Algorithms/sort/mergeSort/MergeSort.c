@@ -1,10 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "MergeSort.h"
 
-// declare
-void mergeSort(int *arr, int l, int r);
-void mergeTheArray(int *arr, int l, int m, int r);
-void printArray(int *arr, int n);
+/* // declare */
+/* void mergeSort(int *arr, int l, int r); */
+/* void mergeTheArray(int *arr, int l, int m, int r); */
+/* void printArray(int *arr, int n); */
 
 // define
 void mergeSort(int *arr, int l, int r) {
@@ -57,5 +56,6 @@ void printArray(int *arr, int n) {
 	for (int i = 0; i < n; i++) {
 		printf("%d ", arr[i]);
 	}
+
 	printf("\n");
 }

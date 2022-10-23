@@ -7,6 +7,8 @@ int main() {
 	int n = 7;
 
 	printf("%d", binarySearch(array, 0, n, 19));
+
+	return 0;
 }
 
 int binarySearch(int* array, int l, int r, int target) {
