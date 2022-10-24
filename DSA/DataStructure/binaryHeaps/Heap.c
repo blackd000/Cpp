@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-struct heap {
-	int *array;
-	int count; // number of elements in Heap
-	int capacity; // Size of Heap
-	int heapType; // Min Heap or Max Heap
-};
-typedef struct heap Heap;
+#include "Heap.h"
 
 // Time Complexity: O(1).
 Heap *createHeap(int capacity, int heapType) {
@@ -195,11 +186,16 @@ void heapSort(int array[], int n) {
 	//  Continue this process until the number of remaining elements is one
 	for (int i = n - 1; i > 0; i--) {
 		int temp = h->array[0];
-		h->array[0] = h->array[i];
-		h->array[i] = temp;
+		h->array[0] = h->array[h->count - 1];
+		h->array[h->count - 1] = temp;
 
 		h->count--;
+		heapify(h, 0);
 	}
 
 	h->count = oldCount;
+
+	for (int i = 0; i < n; i++) {
+		array[i] = h->array[i];
+	}
 }

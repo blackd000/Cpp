@@ -1,7 +1,16 @@
 #include <stdio.h>
-#include "Heap.c"
+#include "Heap.h"
+
+void test1();
+void test2();
 
 int main() {
+	test2();
+
+	return 0;
+}
+
+void test1() {
 	Heap *h = createHeap(10, 1);
 
 	insert(h, 3);
@@ -23,6 +32,22 @@ int main() {
 	printHeap(h);
 	printf("\nI just removed %d\n", deleteMax(h));
 	printHeap(h);
+}
 
-	return 0;
+void test2() {
+	// test heap sort
+	int array[] = { 1, 5, 14, 2, 10, 21, 18, 3, 11, 8, 7, 12 }; // n = 12
+	int n = 12;
+
+	/* Heap *heap = createHeap(n, 50); */
+	/* buildHeap(heap, array, n); */
+	/* printHeap(heap); */
+	/* printf("\n"); */
+
+	heapSort(array, n);
+
+	for (int i = 0; i < n; i++) {
+		printf("%d ", array[i]);
+	}
+	printf("\n");
 }
