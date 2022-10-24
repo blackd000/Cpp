@@ -1,15 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "ArrayQueue.h"
 
-struct arrayQueue {
-	int front, rear;
-	int capacity;
-	int* array;
-};
-typedef struct arrayQueue ArrayQueue;
-
-ArrayQueue* createQueue(int size) {
-	ArrayQueue* Q = (ArrayQueue*) (malloc(sizeof(ArrayQueue)));
+ArrayQueue *createQueue(int size) {
+	ArrayQueue *Q = (ArrayQueue *) (malloc(sizeof(ArrayQueue)));
 
 	Q->front = Q->rear = -1;
 	Q->capacity = size;
@@ -18,19 +10,19 @@ ArrayQueue* createQueue(int size) {
 	return Q;
 }
 
-int isEmptyQueue(ArrayQueue* Q) {
+int isEmptyQueue(ArrayQueue *Q) {
 	return (Q->front == -1);
 }
 
-int isFullQueue(ArrayQueue* Q) {
+int isFullQueue(ArrayQueue *Q) {
 	return ((Q->rear + 1) % Q->capacity == Q->front);
 }
 
-int queueSize(ArrayQueue* Q) {
+int queueSize(ArrayQueue *Q) {
 	return ((Q->capacity - Q->front + Q->rear + 1) % Q->capacity);
 }
 
-void enQueue(ArrayQueue* Q, int data) {
+void enQueue(ArrayQueue *Q, int data) {
 	if (isFullQueue(Q)) {
 		printf("Exception: Queue Overflow\n");
 	} else {
@@ -43,7 +35,7 @@ void enQueue(ArrayQueue* Q, int data) {
 	}
 }
 
-int deQueue(ArrayQueue* Q) {
+int deQueue(ArrayQueue *Q) {
 	int data = 0;
 	if (isEmptyQueue(Q)) {
 		printf("Exception: Queue is empty");
@@ -59,12 +51,12 @@ int deQueue(ArrayQueue* Q) {
 	return data;
 }
 
-void deleteQueue(ArrayQueue* Q) {
+void deleteQueue(ArrayQueue *Q) {
 	free(Q->array);
 	free(Q);
 }
 
-void printQueue(ArrayQueue* Q) {
+void printQueue(ArrayQueue *Q) {
 	if (isEmptyQueue(Q)) {
 		printf("Exception: Queue is empty!!");
 		return;
@@ -76,19 +68,3 @@ void printQueue(ArrayQueue* Q) {
 		Q->front = (Q->front + 1) % Q->capacity;
 	} while (Q->front != (Q->rear + 1) % Q->capacity);
 }
-
-/* int main() { */
-/* 	ArrayQueue* testQ = createQueue(5); */
-
-/* 	// add data to queue */
-/* 	enQueue(testQ, 1); */
-/* 	enQueue(testQ, 1); */
-/* 	enQueue(testQ, 1); */
-/* 	enQueue(testQ, 1); */
-/* 	enQueue(testQ, 9); */
-
-/* 	// dequeue data */
-/* 	deQueue(testQ); */
-
-/* 	printQueue(testQ); */
-/* } */
