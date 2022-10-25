@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "SinglyLinkedList.h"
 
 Node *createNode(int data) {
