@@ -10,24 +10,29 @@ DLLNode *createNode(int data, DLLNode *predecessor, DLLNode *successor) {
 	return tempNode;
 }
 
-DLLNode *DLLInsert(DLLNode *head, int data, int position) {
+void DLLInsert(DLLNode **head, int data, int position) {
+	if (!*head) {
+		*head = createNode(data, NULL, NULL);
+		return;
+	}
+
 	DLLNode *newNode;
 
 	if (position == 0) { // insert node in DoublyLinkedList at the beginning
-		newNode = createNode(data, NULL, head);
-		head->prev = newNode;
-		head = newNode;
+		newNode = createNode(data, NULL, *head);
+		(*head)->prev = newNode;
+		*head = newNode;
 	} else { // insert node in DoublyLinkedList at somewhere
 		int index = 0;
-		DLLNode *traver = head;
+		DLLNode *traver = *head;
 		while (traver->next && index < position - 1) {
 			index++;
 			traver = traver->next;
 		}
 
-		if (index != position -1) {
-			printf("\nVi tri may muon them: %d khong ton tai\n", position);
-			return head;
+		if (index != position - 1) {
+			printf("\nVi tri may muon them node: %d khong ton tai\n", position);
+			return;
 		}
 
 		newNode = createNode(data, traver, traver->next);
@@ -38,21 +43,19 @@ DLLNode *DLLInsert(DLLNode *head, int data, int position) {
 		}
 		traver->next = newNode;
 	}
-
-	return head;
 }
 
-DLLNode *DLLDelete(DLLNode *head, int position) {
-	if (!head) {
+void DLLDelete(DLLNode **head, int position) {
+	if (!*head) {
 		printf("\nDoubly Linked List is empty\n");
-		return NULL;
+		return;
 	}
 
-	DLLNode *tempNode = head;
+	DLLNode *tempNode = *head;
 
 	if (position == 0) { // delete node at the beginning
-		head = head->next;
-		head->prev = NULL;
+		*head = (*head)->next;
+		(*head)->prev = NULL;
 	} else { // delete node in DoublyLinkedList at somewhere
 		int index = 0;
 		while (tempNode && index < position) {
@@ -61,8 +64,8 @@ DLLNode *DLLDelete(DLLNode *head, int position) {
 		}
 
 		if (!tempNode) {
-			printf("\nNode may dinh xoa: %d khong ton tai\n", position);
-			return head;
+			printf("\nVi tri may dinh xoa: %d khong ton tai\n", position);
+			return;
 		}
 
 		DLLNode *tempNode2 = tempNode->prev;
@@ -75,11 +78,10 @@ DLLNode *DLLDelete(DLLNode *head, int position) {
 	}
 
 	free(tempNode);
-	return head;
 }
 
-void printDLL(DLLNode *head) {
-	for (DLLNode *traver = head; traver; traver = traver->next) {
+void printDLL(DLLNode **head) {
+	for (DLLNode *traver = *head; traver; traver = traver->next) {
 		printf("%d ", traver->data);
 	}
 }

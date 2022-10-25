@@ -1,3 +1,4 @@
 DoublyLinkedList:
-	gcc -o DoublyLinkedListTest DoublyLinkedListTest.c DoublyLinkedList.c
-	./DoublyLinkedListTest
+	gcc -o DoublyLinkedListTest.out DoublyLinkedListTest.c DoublyLinkedList.c
+	./DoublyLinkedListTest.out
+	rm *.out

@@ -1,29 +1,30 @@
 #include <stdio.h>
 #include <string.h>
-#include "ArrayStack.h"
+#include "../linkedListStack/LinkedListStack.h"
 
-int isCorrectExpression(const char*);
-int checkChar(const char*, char);
+int isCorrectExpression(const char *expression);
+int checkChar(const char *array, char character);
 
 int main() {
 	const char* expression = "5 + [(9 * 3) - 18]";
 
 	printf("%d", isCorrectExpression(expression));
 
+	printf("\n");
 	return 0;
 }
 
 int isCorrectExpression(const char* expression) {
 	const char* open = "([{";
 	const char* close = ")]}";
-	ArrayStack* arrayStack = createStack();
+	Stack **arrayStack = (Stack **) malloc(sizeof(Stack *));
 
 	int n = strlen(expression);
 	for (int i = 0; i < n; i++) {
 		if (checkChar(open, expression[i]) != -1) {
 			push(arrayStack, expression[i]);
 		} else if (checkChar(close, expression[i]) != -1) {
-			if (isEmptyStack(arrayStack)) {
+			if (isEmptyStack(*arrayStack)) {
 				return 0;
 			}
 			if (checkChar(close, expression[i]) != checkChar(open, pop(arrayStack))) {
@@ -32,7 +33,7 @@ int isCorrectExpression(const char* expression) {
 		}
 	}
 
-	return (isEmptyStack(arrayStack));
+	return (isEmptyStack(*arrayStack));
 }
 
 int checkChar(const char* array, char character) {

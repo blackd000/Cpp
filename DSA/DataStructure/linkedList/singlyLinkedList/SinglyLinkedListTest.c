@@ -2,18 +2,22 @@
 #include "SinglyLinkedList.h"
 
 int main() {
-	Node *head = createNode(8);
+	Node **head = (Node **) malloc(sizeof(Node *));
 
-	head = insertInLinkedList(head, 9, 0);
-	head = insertInLinkedList(head, 18, 1);
-	head = insertInLinkedList(head, 28, 2);
-	head = insertInLinkedList(head, 38, 2);
+	insertInLinkedList(head, 9, 0);
+	insertInLinkedList(head, 18, 1);
+	insertInLinkedList(head, 28, 2);
+	insertInLinkedList(head, 38, 2);
+
+	int a;
+	printf("Nhap a di: ");
+	scanf("%d", &a);
 
 	// delete nodes from SinglyLinkedList
 	printSinglyLinkedList(head);
 	printf("\n");
 
-	head = deleteInLinkedList(head, 3);
+	deleteInLinkedList(head, 3);
 
 	printSinglyLinkedList(head);
 	printf("\n");
@@ -21,5 +25,6 @@ int main() {
 	// delete SinglyLinkedList
 	deleteLinkedList(head);
 
+	printf("\n");
 	return 0;
 }

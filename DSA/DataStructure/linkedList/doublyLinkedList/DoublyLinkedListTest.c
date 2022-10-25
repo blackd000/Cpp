@@ -2,19 +2,21 @@
 #include "DoublyLinkedList.h"
 
 int main() {
-	DLLNode *head = createNode(19, NULL, NULL);
+	DLLNode **head = (DLLNode **) malloc(sizeof(DLLNode *));
 
-	head = DLLInsert(head, 13, 0);
-	head = DLLInsert(head, 17, 1);
-	head = DLLInsert(head, 333, 3);
-
-	printDLL(head);
-	printf("\n");
-
-	head = DLLDelete(head, 1);
+	DLLInsert(head, 13, 0);
+	DLLInsert(head, 17, 1);
+	DLLInsert(head, 333, 1);
+	DLLInsert(head, 178, 2);
 
 	printDLL(head);
 	printf("\n");
 
+	DLLDelete(head, 1);
+
+	printDLL(head);
+	printf("\n");
+
+	printf("\n");
 	return 0;
 }

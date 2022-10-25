@@ -44,6 +44,11 @@ void test2() {
 	/* printHeap(heap); */
 	/* printf("\n"); */
 
+	for (int i = 0; i < n; i++) {
+		printf("%d ", array[i]);
+	}
+	printf("\n");
+
 	heapSort(array, n);
 
 	for (int i = 0; i < n; i++) {
