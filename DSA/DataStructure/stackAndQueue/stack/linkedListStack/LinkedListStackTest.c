@@ -22,5 +22,6 @@ int main() {
 
 	deleteStack(stack);
 
+	printf("\n");
 	return 0;
 }

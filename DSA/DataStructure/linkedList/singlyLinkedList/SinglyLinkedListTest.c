@@ -9,10 +9,6 @@ int main() {
 	insertInLinkedList(head, 28, 2);
 	insertInLinkedList(head, 38, 2);
 
-	int a;
-	printf("Nhap a di: ");
-	scanf("%d", &a);
-
 	// delete nodes from SinglyLinkedList
 	printSinglyLinkedList(head);
 	printf("\n");

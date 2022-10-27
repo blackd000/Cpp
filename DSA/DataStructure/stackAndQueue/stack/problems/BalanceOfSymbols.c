@@ -2,13 +2,16 @@
 #include <string.h>
 #include "../linkedListStack/LinkedListStack.h"
 
+// - Time Complexity: O(n). Since we are scanning the input only once. 
+// - Space Complexity: O(n) [forstack].
 int isCorrectExpression(const char *expression);
 int checkChar(const char *array, char character);
 
 int main() {
 	const char* expression = "5 + [(9 * 3) - 18]";
 
-	printf("%d", isCorrectExpression(expression));
+	printf("Expression: %s\n", expression);
+	printf("Is the symbols balance: %d\n", isCorrectExpression(expression));
 
 	printf("\n");
 	return 0;
@@ -17,23 +20,25 @@ int main() {
 int isCorrectExpression(const char* expression) {
 	const char* open = "([{";
 	const char* close = ")]}";
-	Stack **arrayStack = (Stack **) malloc(sizeof(Stack *));
+	Stack **stack = (Stack **) malloc(sizeof(Stack *));
 
 	int n = strlen(expression);
 	for (int i = 0; i < n; i++) {
 		if (checkChar(open, expression[i]) != -1) {
-			push(arrayStack, expression[i]);
+			push(stack, expression[i]);
 		} else if (checkChar(close, expression[i]) != -1) {
-			if (isEmptyStack(*arrayStack)) {
+			if (isEmptyStack(*stack)) {
 				return 0;
 			}
-			if (checkChar(close, expression[i]) != checkChar(open, pop(arrayStack))) {
+
+			char openCharacterInStack = pop(stack);
+			if (checkChar(close, expression[i]) != checkChar(open, openCharacterInStack)) {
 				return 0;
 			}
 		}
 	}
 
-	return (isEmptyStack(*arrayStack));
+	return (isEmptyStack(*stack));
 }
 
 int checkChar(const char* array, char character) {

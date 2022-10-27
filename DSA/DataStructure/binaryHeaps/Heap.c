@@ -122,16 +122,22 @@ int deleteMax(Heap *h) {
 }
 
 void resizeHeap(Heap *h) {
-	int *oldArray = h->array;
+	/* // old way doing stuff */
+	/* int *oldArray = h->array; */
 
-	h->array = (int *) malloc(sizeof(int) * h->capacity * 2);
+	/* h->array = (int *) malloc(h->capacity * 2 * sizeof(int)); */
 
-	for (int i = 0; i < h->capacity; i++) {
-		h->array[i] = oldArray[i];
-	}
+	/* for (int i = 0; i < h->capacity; i++) { */
+	/* 	h->array[i] = oldArray[i]; */
+	/* } */
+	/* h->capacity *= 2; */
+
+	/* free(oldArray); */
+
 	h->capacity *= 2;
+	h->array = (int *) realloc(h->array, h->capacity * sizeof(int));
 
-	free(oldArray);
+	printf("\nThe head has been resized!!\n");
 }
 
 // *** NOTE: Inserting an element uses percolateUp.

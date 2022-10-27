@@ -5,13 +5,14 @@ void test1();
 void test2();
 
 int main() {
-	test2();
+	test1();
+	/* test2(); */
 
 	return 0;
 }
 
 void test1() {
-	Heap *h = createHeap(10, 1);
+	Heap *h = createHeap(1, 1);
 
 	insert(h, 3);
 	insert(h, 100);
@@ -20,18 +21,19 @@ void test1() {
 	insert(h, 39);
 
 	printHeap(h);
+	printf("\n");
 
-	printf("\n\nParent of index 3 is: %d", h->array[parent(h, 3)]);
+	printf("\nParent of index 3 is: %d\n", h->array[parent(h, 3)]);
 
-	printf("\n\nLeft child and right child of location 1 is:\n");
-	printf("Left: %d, Right: %d\n\n", h->array[leftChild(h, 1)], h->array[rightChild(h, 1)]);
+	printf("\nLeft child and right child of location 1 is:");
+	printf("\nLeft: %d, Right: %d\n", h->array[leftChild(h, 1)], h->array[rightChild(h, 1)]);
 
 	/* percolateDown(h, 0); */
 
 	// delete max value of the heap
+	printf("\nI have just removed %d\n", deleteMax(h));
 	printHeap(h);
-	printf("\nI just removed %d\n", deleteMax(h));
-	printHeap(h);
+	printf("\n");
 }
 
 void test2() {
