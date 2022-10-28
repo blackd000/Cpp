@@ -28,12 +28,12 @@ int pop(Stack **top) {
 	return data;
 }
 
-int top(Stack *top) {
-	if (isEmptyStack(top)) {
+int top(Stack *head) {
+	if (isEmptyStack(head)) {
 		return INT_MIN;
 	}
 
-	return top->data;
+	return head->data;
 }
 
 int isEmptyStack(Stack *top) {

@@ -1,21 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include "../linkedListStack/LinkedListStack.h"
-
-// - Time Complexity: O(n). Since we are scanning the input only once. 
-// - Space Complexity: O(n) [forstack].
-int isCorrectExpression(const char *expression);
-int checkChar(const char *array, char character);
-
-int main() {
-	const char* expression = "5 + [(9 * 3) - 18]";
-
-	printf("Expression: %s\n", expression);
-	printf("Is the symbols balance: %d\n", isCorrectExpression(expression));
-
-	printf("\n");
-	return 0;
-}
+#include "BalanceOfSymbols.h"
 
 int isCorrectExpression(const char* expression) {
 	const char* open = "([{";
@@ -42,7 +25,8 @@ int isCorrectExpression(const char* expression) {
 }
 
 int checkChar(const char* array, char character) {
-	for (int i = 0; i < strlen(array); i++) {
+	int n = strlen(array);
+	for (int i = 0; i < n; i++) {
 		if (array[i] == character) {
 			return i;
 		}
