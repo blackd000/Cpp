@@ -8,7 +8,7 @@ void infixToPostfix(const char *expression) {
 
 	int n = strlen(expression);
 	for (int i = 0; i < n; i++) {
-		if ((checkChar(operator, expression[i]) == -1) && expression[i] != '(' && expression[i] != ')') { // operand
+		if ((checkChar(operator, expression[i]) == -1)) { // operand
 			printf("%c", expression[i]);
 		} else if (expression[i] == ')') { // right parentheses
 			char token;
