@@ -27,6 +27,6 @@ void deleteInLinkedList(Node **head, int position);
 void deleteLinkedList(Node **head);
 
 // - Time Complexity: O(n)
-void printSinglyLinkedList(Node **head);
+void printSinglyLinkedList(Node *head);
 
 #endif

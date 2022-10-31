@@ -52,6 +52,6 @@ void deleteStack(Stack **top) {
 	*top = NULL;
 }
 
-void printStack(Stack **top) {
+void printStack(Stack *top) {
 	printSinglyLinkedList(top);
 }

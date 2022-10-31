@@ -25,6 +25,6 @@ int isEmptyStack(Stack *top);
 void deleteStack(Stack **top);
 
 // - Time Complexity: O(n)
-void printStack(Stack **top);
+void printStack(Stack *top);
 
 #endif

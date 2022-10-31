@@ -10,14 +10,14 @@ int main() {
 	push(stack, 13);
 	push(stack, 69);
 
-	printStack(stack);
+	printStack(*stack);
 	printf("\n");
 
 	// pop data
 	printf("Tao vua moi xoa: %d\n", pop(stack));
 	printf("Tao vua moi xoa: %d\n", pop(stack));
 
-	printStack(stack);
+	printStack(*stack);
 	printf("\n");
 
 	deleteStack(stack);

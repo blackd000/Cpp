@@ -10,12 +10,12 @@ int main() {
 	insertInLinkedList(head, 38, 2);
 
 	// delete nodes from SinglyLinkedList
-	printSinglyLinkedList(head);
+	printSinglyLinkedList(*head);
 	printf("\n");
 
 	deleteInLinkedList(head, 3);
 
-	printSinglyLinkedList(head);
+	printSinglyLinkedList(*head);
 	printf("\n");
 
 	// delete SinglyLinkedList

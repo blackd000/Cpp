@@ -77,8 +77,8 @@ void deleteLinkedList(Node **head) {
 	*head = NULL; // to affect the real head back in the caller
 }
 
-void printSinglyLinkedList(Node **head) {
-	for (Node *traver = *head; traver; traver = traver->next) {
+void printSinglyLinkedList(Node *head) {
+	for (Node *traver = head; traver; traver = traver->next) {
 		printf("%d ", traver->data);
 	}
 }
