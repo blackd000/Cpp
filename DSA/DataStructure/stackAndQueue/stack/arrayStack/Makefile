@@ -1,3 +1,4 @@
 ArrayStack:
-	gcc -o ArrayStackTest ArrayStackTest.c ArrayStack.c
-	./ArrayStackTest
+	gcc -o ArrayStackTest.out ArrayStackTest.c ArrayStack.c
+	./ArrayStackTest.out
+	rm *.out

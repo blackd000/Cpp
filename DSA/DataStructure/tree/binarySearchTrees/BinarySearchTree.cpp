@@ -1,27 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "BinarySearchTree.h"
 
-struct binarySearchTreeNode {
-	int data;
-	struct binarySearchTreeNode *left;
-	struct binarySearchTreeNode *right;
-};
-typedef struct binarySearchTreeNode BinarySearchTreeNode;
+/* BinarySearchTreeNode *createNode(int data) { */
+/* 	BinarySearchTreeNode *tempNode = (BinarySearchTreeNode *) malloc(sizeof(BinarySearchTreeNode)); */
 
-BinarySearchTreeNode *createNode(int data) {
-	BinarySearchTreeNode *tempNode = (BinarySearchTreeNode *) malloc(sizeof(BinarySearchTreeNode));
+/* 	tempNode->data = data; */
+/* 	tempNode->left = tempNode->right = NULL; */
 
-	tempNode->data = data;
-	tempNode->left = tempNode->right = NULL;
+/* 	return tempNode; */
+/* } */
 
-	return tempNode;
-}
-
-// Time Complexity:O(n). Space Complexity:O(n), for 
-// recursive stack. For iterative version, space complexity is O(1).
 BinarySearchTreeNode *insert(BinarySearchTreeNode *root, int data) {
 	if (!root) {
-		root = createNode(data);
+		root = new BinarySearchTreeNode(data);
 	} else {
 		if (data < root->data) {
 			root->left = insert(root->left, data);
@@ -36,13 +26,12 @@ BinarySearchTreeNode *insert(BinarySearchTreeNode *root, int data) {
 void inorder(BinarySearchTreeNode *root) {
 	if (root) {
 		inorder(root->left);
-		printf("%d ", root->data);
+		cout << root->data << " ";
+
 		inorder(root->right);
 	}
 }
 
-// Time Complexity: O(n), in worst case (when BST is 
-// a skew tree). Space Complexity: O(n), for recursive stack.
 BinarySearchTreeNode *find(BinarySearchTreeNode *root, int data) {
 	if (!root) {
 		return NULL;
@@ -57,7 +46,6 @@ BinarySearchTreeNode *find(BinarySearchTreeNode *root, int data) {
 	return root; // da tim thay
 }
 
-// Time Complexity: O(n). Space Complexity: O(1)
 BinarySearchTreeNode *findNonRecursive(BinarySearchTreeNode *root, int data) {
 	if (!root) {
 		return NULL;
@@ -79,8 +67,6 @@ BinarySearchTreeNode *findNonRecursive(BinarySearchTreeNode *root, int data) {
 	return NULL;
 }
 
-// Time Complexity: O(n), in worst case (when BST is 
-// a left skew tree). Space Complexity: O(n), for recursive stack
 BinarySearchTreeNode *findMin(BinarySearchTreeNode *root) {
 	if (!root) {
 		return NULL;
@@ -91,7 +77,6 @@ BinarySearchTreeNode *findMin(BinarySearchTreeNode *root) {
 	}
 }
 
-// Time Complexity: O(n). Space Complexity: O(1)
 BinarySearchTreeNode *findMinNonRecursive(BinarySearchTreeNode *root) {
 	if (!root) {
 		return NULL;
@@ -104,8 +89,6 @@ BinarySearchTreeNode *findMinNonRecursive(BinarySearchTreeNode *root) {
 	return root;
 }
 
-// Time Complexity: O(n), in worst case (when BST is a 
-// left skew tree). Space Complexity: O(n), for recursive stack
 BinarySearchTreeNode *findMax(BinarySearchTreeNode *root) {
 	if (!root) {
 		return NULL;
@@ -116,7 +99,6 @@ BinarySearchTreeNode *findMax(BinarySearchTreeNode *root) {
 	}
 }
 
-// Time Complexity: O(n). Space Complexity: O(1)
 BinarySearchTreeNode *findMaxNonRecursive(BinarySearchTreeNode *root) {
 	if (!root) {
 		return NULL;
@@ -129,22 +111,20 @@ BinarySearchTreeNode *findMaxNonRecursive(BinarySearchTreeNode *root) {
 	return root;
 }
 
-// Time Complexity: O(n). Space Complexity: O(n) for recursive 
-// stack. For iterative version, space complexity is O(1).
-BinarySearchTreeNode *delete(BinarySearchTreeNode *root, int data) {
+BinarySearchTreeNode *deleteBST(BinarySearchTreeNode *root, int data) {
 	BinarySearchTreeNode *temp = NULL;
 
 	if (!root) { // not found
-		printf("Element not found!!!\n");
+		cout << "Element not found!!!\n";
 	} else if (data < root->data) {
-		root->left = delete(root->left, data);
+		root->left = deleteBST(root->left, data);
 	} else if (data > root->data) {
-		root->right = delete(root->right, data);
+		root->right = deleteBST(root->right, data);
 	} else { // Found an element
 		if (root->left && root->right) { // replace with the largest in left subtree
 			temp = findMax(root->left);
 			root->data = temp->data;
-			root->left = delete(root->left, root->data);
+			root->left = deleteBST(root->left, root->data);
 		} else {
 			temp = root;
 
@@ -157,7 +137,7 @@ BinarySearchTreeNode *delete(BinarySearchTreeNode *root, int data) {
 				root = NULL;
 			}
 
-			free(temp);
+			delete(temp);
 		}
 	}
 
