@@ -11,14 +11,16 @@ using std::endl;
 // 		2) In the inner loop compare two adjacent (lien ke) elements and swap if needed
 // 		3) Continue to compare until reach the index iterater of the outer loop
 
-// - Worst case complexity : O(n2)
-// - Best case complexity : O(n2)
-// - Average case complexity : O(n2)
+
+// - Worst, Best, Average case complexity : O(n2)
+//
+// - Worst case space complexity: O(1)
 void bubbleSort(int arr[], int n);
 
 // - We can improve it by using one extra FLAG. No more swaps 
 // indicate the completion of sorting. If the list is already 
 // sorted, we can use this flag to skip the remaining passes.
+//
 // - Worst case complexity : O(n2)
 // - *Best case complexity: O(n).
 // - Average case complexity : O(n2)

@@ -4,14 +4,13 @@ using std::cout;
 using std::endl;
 
 // - Algorithm:
-// 		1. Find the minimum value in the list
+// 		1. Find the minimum value in the list compare to the current value
 // 		2. Swap it with the value in the current position
-// 		3. Repeat this process for all the elements until 
-// 		the entire array is sorted
-// - This algorithm is called selection sort since it 
-// repeatedly selects the smallest element.
+// 		3. Repeat this process for all the elements until the entire array 
+// 		is sorted
 
-// - Best, Average, Worst case complexity : O(n2)
+
+// - Worst, Best, Average case complexity : O(n2)
 //
 // - Worst case space complexity: O(1) auxiliary
 void selectionSort(int arr[], int n);

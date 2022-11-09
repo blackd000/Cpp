@@ -4,11 +4,14 @@ using std::cout;
 using std::endl;
 
 // - Algorithm: 
-// 		1) Iterate from arr[1] to arr[N] over the array. 
+// 		1) Iterate from arr[1] to arr[n - 1] over the array. 
 // 		2) Compare the current element (key) to its predecessor. 
 // 		3) If the key element is smaller than its predecessor. Move 
-// 		the greater elements one position up to make space for the 
-// 		swapped element, continue to compare key to the elements before.
+// 		the greater elements to the right to make space for key
+// 		4) Continue to compare key to the elements before until the
+// 		key is no longer smaller than the element before and insert
+// 		at that position.
+
 
 // - Worst case complexity: O(n2)
 // - *Best case complexity: O(n)
@@ -20,8 +23,8 @@ void insertionSort(int arr[], int n);
 void printArray(int arr[], int n);
 
 int main() {
-	int arr[] = { 8, 1, 3, 2, 15, 4 }; // n = 6
-	int n = 6;
+	int arr[] = { 8, 1, 3, 2, 15, 4 };
+	int n = sizeof(arr) / sizeof(int);
 
 	printArray(arr, n);
 
