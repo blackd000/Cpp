@@ -18,8 +18,8 @@ void selectionSort(int arr[], int n);
 void printArray(int arr[], int n);
 
 int main() {
-	int arr[] = { 3, 1, 19, 8, 2, 15 }; // n = 6
-	int n = 6;
+	int arr[] = { 3, 1, 19, 8, 2, 15 };
+	int n = sizeof(arr) / sizeof(arr[0]);
 
 	printArray(arr, n);
 

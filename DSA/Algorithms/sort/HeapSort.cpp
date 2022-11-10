@@ -4,17 +4,15 @@ using std::cout;
 using std::endl;
 
 // - Algorithm:
-// 		1) Build a max heap from the input data. 
+// 		1) Build a max heap from the input data by using heapify
 // 		2) At this point, the maximum element is stored at the root 
 // 		of the heap. Replace it with the last item of the heap followed 
 // 		by reducing the size of the heap by 1. Finally, heapify the 
-// 		root of the tree. 
-// 		3) Repeat step 2 while the size of the heap is greater than 1.
+// 		root of the tree on the REDUCED heap.
+// 		3) Repeat step 2 WHILE the size of the heap is greater than 1.
 
 
-// - Worst case performance: Θ(nlogn)
-// - Best case performance: Θ(nlogn)
-// - Average case performance: Θ(nlogn)
+// - Worst, Best, Average case performance: Θ(nlogn)
 //
 // - Worst case space complexity: Θ(n) total, Θ(1) auxiliary
 void heapSort(int arr[], int n);
@@ -26,7 +24,7 @@ void printHeap(int arr[], int n);
 int main() {
 	/* int arr[] = { 19, 14, 1, 5, 3, 9, 7 }; */
 	int arr[] = { 3, 1, 9, 5, 2, 18, 7 };
-	int n = 7;
+	int n = sizeof(arr) / sizeof(arr[0]);
 
 	printHeap(arr, n);
 	heapSort(arr, n);
