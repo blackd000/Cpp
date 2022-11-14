@@ -35,7 +35,7 @@ int main() {
 	srand((unsigned) time(NULL));
 
 	for (int i = 0; i < MAX; i++) {
-		int random = 1 + (rand() % 6);
+		int random = (rand() % 6) + 1;
 		arr[i] = random;
 	}
 

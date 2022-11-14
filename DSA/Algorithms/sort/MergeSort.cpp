@@ -9,7 +9,7 @@ using std::endl;
 // - Algorithm:
 // 		mergeSort():
 // 			1) Create a base case that if length is less than or equal to 1 (only 1 element
-// 			remain in array) then terminate
+// 			remain in array) then return
 // 			2) Find the middle point to divide the array into two halves (mid = n / 2)
 // 			3) Create two array, left array has mid size, right array has n - mid size
 // 			4) Call mergeSort() for left array
@@ -37,15 +37,10 @@ int main() {
 	// Providing a seed value
 	srand((unsigned) time(NULL));
 
-	// int random = offset + (rand() % range);
-	// - offset: The starting point for the range of random numbers
-	// - range: The number of values between first and the last possible 
-	// random number including the limits.
-
 	int arr[MAX];
 
 	for (int i = 0; i < MAX; i++) {
-		int random = 1 + (rand() % 1000);
+		int random = (rand() % 1000) + 1;
 		arr[i] = random;
 	}
 
