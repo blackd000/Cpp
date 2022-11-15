@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstdlib>
 
-#define MAX 100
+#define MAX 10
 
 using std::cout;
 using std::endl;
 
 // - Algorithm:
 // 	quickSort():
-// 		1) If there are ONE or NO elements in the array to be sorted, return. (base case).
+// 		1) If there are ONE or NO elements in the array to be sorted, then return (base case).
 // 		2) Pick an element in the array to serve as the "pivot" point. (Usually the right-most
 // 		element in the array is used).
 // 		3) Split the array into two parts (partition) – one with elements smaller than 
@@ -22,8 +22,9 @@ using std::endl;
 // 		2) The two indexes move toward each other until an INVERSION (A greater value 
 // 		on the left side and smaller value on the right side) is found.
 // 		3) When an inversion is found, two values are swapped and the process is repeated. 
-// 		4) (edge case) If those two index are met then if pivot are smaller than index 
-// 		element then swap so the index is itself, else not swap so the index is the pivot index.
+// 		4) If those two index are met then if pivot are smaller than index value then swap 
+// 		so the index to partition is itself, else not swap so the index to partition is 
+// 		the pivot index (edge case).
 
 
 // - *Worst case Complexity: O(n2)

@@ -7,21 +7,21 @@ using std::cout;
 using std::endl;
 
 // - Algorithm:
-// 		mergeSort():
-// 			1) Create a base case that if length is less than or equal to 1 (only 1 element
-// 			remain in array) then return
-// 			2) Find the middle point to divide the array into two halves (mid = n / 2)
-// 			3) Create two array, left array has mid size, right array has n - mid size
-// 			4) Call mergeSort() for left array
-// 			5) Call mergeSort() for right array
-// 			6) Call merge() to merge the two halves SORTED array in step 4 and 5
+// 	mergeSort():
+// 		1) If length is less than or equal to 1 (only 1 element remain in array) 
+// 		then return (base case).
+// 		2) Find the middle point to divide the array into two halves (mid = n / 2)
+// 		3) Create two array, left array has mid size, right array has n - mid size
+// 		4) Call mergeSort() for left array
+// 		5) Call mergeSort() for right array
+// 		6) Call merge() to merge the two halves SORTED array in step 4 and 5
 //
-// 		merge():
-// 			1) While left array and right array has element, compare each element of left
-// 			and right
-// 			2) If left element is less than right array, insert left element in merge array
-// 			and vice versa
-// 			3) While left array or right array has element then copy them to the merge array
+// 	merge():
+// 		1) While left array and right array has element, compare each element of left
+// 		and right
+// 		2) If left element is less than right array, insert left element in merge array
+// 		and vice versa
+// 		3) While left array or right array has element then copy them to the merge array
 
 
 // - Worst, Best, Average case complexity : Θ(nlogn)
