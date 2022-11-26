@@ -3,37 +3,19 @@
 using std::cout;
 
 // - Algorithm:
-// 	FUNCTION int binarySearchIterative(int array[], int n, int target)
-// 		INITIALIZE low = 0 and high = n - 1
-// 		WHILE low still less than or equal to high
-// 			INITIALIZE mid = low + (high - low) / 2 to find middle point in array
-// 			IF target is equal to the element at the mid point
-// 				RETURN mid means has been found
-// 			ELSE IF target is less than the element at the mid point
-// 				SET high = m - 1 means to move to the left half
-// 			ELSE target is greater or equal to the element at the mid point
-// 				SET low = m + 1 means to move to the right half
-// 			END IF
-// 		END WHILE
-// 		RETURN -1 indicate that the element is not found
-//
+// 	1) Begin with the mid element of the whole array as a search key.
+// 	2) If the value of the search key is equal to the item then return an 
+// 	index of the search key.
+// 	3) Or if the value of the search key is less than the item in the middle 
+// 	of the interval, narrow the interval to the lower half.
+// 	4) Otherwise, narrow it to the upper half.
+// 	5) Repeatedly check from the second point until the value is found or the interval is empty.
+
+
 // - Time complexity: O(logn)
 // - Space complexity: O(1)
 int binarySearchIterative(int array[], int n, int target);
 
-// - Algorithm:
-// 	FUNCTION int binarySearchRecursive(int array[], int low, int high, int target)
-// 		IF low is greater than high // this is BASE CASE
-// 			RETURN -1
-// 		INITIALIZE mid = low + (high - low) / 2 to find middle point
-// 		IF target is equal to the element at the mid point
-// 			RETURN mid means has been found
-// 		ELSE IF target is less than the element at the mid point
-// 			RETURN the call recursively on the left half
-// 		ELSE target is greater or equal to the element at the mid point
-// 			RETURN the call recursively on the right half
-// 		END IF
-//
 // - Time complexity: O(logn)
 // - Space complexity: O(logn)
 int binarySearchRecursive(int array[], int low, int high, int target);
