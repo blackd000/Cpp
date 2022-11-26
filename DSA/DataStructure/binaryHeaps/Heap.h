@@ -59,24 +59,24 @@ void percolateUp(Heap *h, int i);
 // - Time Complexity: O(logn). (Same as Heapify function)
 int deleteMax(Heap *h);
 
-void resizeHeap(Heap *);
+void resizeHeap(Heap *h);
 
 // *** NOTE: Inserting an element uses Percolate Up.
 // - Time Complexity: O(logn). The explanation is the same as 
 // that of the Heapify function. 
-void insert(Heap *, int);
+void insert(Heap *h, int value);
 
-void destroyHeap(Heap *);
+void destroyHeap(Heap *h);
 
 // - Time Complexity: O(n).
-void buildHeap(Heap *, int *, int);
+void buildHeap(Heap *h, int array[], int n);
 
 // - Time Complexity: O(nlogn). As we remove the elements from the 
 // heap, the values become sorted (since maximum elements are always 
 // root only). Since the time complexity of both the insertion algorithm 
 // and deletion algorithm is O(logn) (where n is the number of items 
 // in the heap), the time complexity of the heap sort algorithm is O(nlogn)
-void heapSort(int *, int);
+void heapSort(int array[], int n);
 
 void printHeap(Heap *);
 

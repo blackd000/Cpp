@@ -10,30 +10,31 @@
 /* } */
 
 BinarySearchTreeNode *insert(BinarySearchTreeNode *root, int data) {
-	if (!root) {
-		root = new BinarySearchTreeNode(data);
-	} else {
-		if (data < root->data) {
-			root->left = insert(root->left, data);
-		} else if (data > root->data) {
-			root->right = insert(root->right, data);
-		}
+	if (root == NULL) {
+		return (new BinarySearchTreeNode(data));
+	} 
+
+	if (data < root->data) {
+		root->left = insert(root->left, data);
+	} else if (data > root->data) {
+		root->right = insert(root->right, data);
 	}
 
+	// return 'root' node after insertion or if found element then simply return (do nothing)
 	return root;
 }
 
 void inorder(BinarySearchTreeNode *root) {
-	if (root) {
+	if (root != NULL) {
 		inorder(root->left);
 		cout << root->data << " ";
-
 		inorder(root->right);
 	}
 }
 
 BinarySearchTreeNode *find(BinarySearchTreeNode *root, int data) {
-	if (!root) {
+	// not found
+	if (root == NULL) {
 		return NULL;
 	}
 
@@ -43,15 +44,12 @@ BinarySearchTreeNode *find(BinarySearchTreeNode *root, int data) {
 		return find(root->right, data);
 	}
 
-	return root; // da tim thay
+	// finally found this value
+	return root;
 }
 
 BinarySearchTreeNode *findNonRecursive(BinarySearchTreeNode *root, int data) {
-	if (!root) {
-		return NULL;
-	}
-
-	while (root) {
+	while (root != NULL) {
 		if (data == root->data) {
 			return root;
 		} else if (data < root->data) {
@@ -59,18 +57,17 @@ BinarySearchTreeNode *findNonRecursive(BinarySearchTreeNode *root, int data) {
 		} else {
 			root = root->right;
 		}
-		/* printf("\nHere: "); */
-		/* inorder(root); */
-		/* printf("\n"); */
 	}
 
 	return NULL;
 }
 
 BinarySearchTreeNode *findMin(BinarySearchTreeNode *root) {
-	if (!root) {
+	if (root == NULL) {
 		return NULL;
-	} else if (!root->left) {
+	} 
+
+	if (root->left == NULL) {
 		return root;
 	} else {
 		return findMin(root->left);
@@ -78,21 +75,25 @@ BinarySearchTreeNode *findMin(BinarySearchTreeNode *root) {
 }
 
 BinarySearchTreeNode *findMinNonRecursive(BinarySearchTreeNode *root) {
-	if (!root) {
+	if (root == NULL) {
 		return NULL;
 	}
 
-	while (root->left) {
-		root = root->left;
+	BinarySearchTreeNode *currentNode = root;
+
+	while (currentNode->left != NULL) {
+		currentNode = currentNode->left;
 	}
 
-	return root;
+	return currentNode;
 }
 
 BinarySearchTreeNode *findMax(BinarySearchTreeNode *root) {
-	if (!root) {
+	if (root == NULL) {
 		return NULL;
-	} else if (!root->right) {
+	} 
+
+	if (root->right == NULL) {
 		return root;
 	} else {
 		return findMax(root->right);
@@ -100,44 +101,50 @@ BinarySearchTreeNode *findMax(BinarySearchTreeNode *root) {
 }
 
 BinarySearchTreeNode *findMaxNonRecursive(BinarySearchTreeNode *root) {
-	if (!root) {
+	if (root == NULL) {
 		return NULL;
 	}
 
-	while (root->right) {
-		root = root->right;
+	BinarySearchTreeNode *currentNode = root;
+
+	while (currentNode->right != NULL) {
+		currentNode = currentNode->right;
 	}
 
-	return root;
+	return currentNode;
 }
 
 BinarySearchTreeNode *deleteBST(BinarySearchTreeNode *root, int data) {
-	BinarySearchTreeNode *temp = NULL;
+	if (root == NULL) { // not found, its also a BASE CASE
+		cout << "\nElement not found!!!\n";
+		return root;
+	}
 
-	if (!root) { // not found
-		cout << "Element not found!!!\n";
-	} else if (data < root->data) {
+	// find an element
+	if (data < root->data) {
 		root->left = deleteBST(root->left, data);
 	} else if (data > root->data) {
 		root->right = deleteBST(root->right, data);
-	} else { // Found an element
-		if (root->left && root->right) { // replace with the largest in left subtree
-			temp = findMax(root->left);
-			root->data = temp->data;
-			root->left = deleteBST(root->left, root->data);
-		} else {
-			temp = root;
+	} else { // Found an element, lets remove it boi
+		if (root->left == NULL && root->right == NULL) { // the removed node is the leaf node
+			delete(root);
+			return NULL;
+		} else if (root->right == NULL) { // the removed node has left child
+			BinarySearchTreeNode *tempNode = root->left;
+			delete(root);
+			return tempNode;
+		} else if (root->left == NULL) { // the removed node has right child
+			BinarySearchTreeNode *tempNode = root->right;
+			delete(root);
+			return tempNode;
+		} else { // the removed node has both left child and right child
+			// it's time to find the inorder successor 
+			BinarySearchTreeNode *tempNode = findMinNonRecursive(root->right);
 
-			// one child left or right
-			if (root->left) {
-				root = root->left;
-			} else if (root->right) {
-				root = root->right;
-			} else { // or not at all
-				root = NULL;
-			}
+			root->data = tempNode->data;
 
-			delete(temp);
+			// delete the inorder successor
+			root->right = deleteBST(root->right, tempNode->data);
 		}
 	}
 

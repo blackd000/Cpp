@@ -90,23 +90,25 @@ void percolateUp(Heap *h, int i) {
 
 int deleteMax(Heap *h) {
 	if (h->count == 0) {
-		printf("heap is NULL\n");
+		cout << "Heap is NULL\n";
 		return -1;
 	}
 
-	// swap the last element with the root and reduce the heap size
+	// replacing the last element with the first element and reduce the heap size
 	int data = h->array[0];
 	h->array[0] = h->array[h->count - 1];
-	h->count--;
+	h->count--; // reducing the heap size
 
 	// after replacing the last element, the tree may not satisfy the heap 
-	// property. We heapify this element
+	// property. We heapify (Percolate Down) this element
 	heapify(h, 0); // at 0 index
 
 	return data;
 }
 
 void resizeHeap(Heap *h) {
+	// ** NOTE: DO NOT mix realloc with new
+	
 	// ---------------------- Using C ---------------------- //
 	/* // old way doing stuff */
 	/* int *oldArray = h->array; */
@@ -122,7 +124,6 @@ void resizeHeap(Heap *h) {
 	/* h->array = (int *) realloc(h->array, h->capacity * sizeof(int)); */
 
 	// --------------------- Using C++ --------------------- //
-	// DO NOT mix realloc with new
 	int *oldArray = h->array;
 	h->array = new int[h->capacity * 2];
 	for (int i = 0; i < h->capacity; i++) {
@@ -169,7 +170,12 @@ void buildHeap(Heap *h, int array[], int n) {
 	}
 	h->count = n;
 
-	for (int i = (n - 1) / 2; i >= 0; i--) {
+	// index of the last non-leaf node
+	int startIndex = (n / 2) - 1;
+
+	// Perform reverse Level Order Traversal from last non-leaf 
+	// node and heapify each node
+	for (int i = startIndex; i >= 0; i--) {
 		heapify(h, i);
 	}
 }

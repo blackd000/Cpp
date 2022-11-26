@@ -1,12 +1,15 @@
 #include <iostream>
 #include "Heap.h"
 
+using std::cout;
+using std::endl;
+
 void test1();
 void test2();
 
 int main() {
-	test1();
-	/* test2(); */
+	/* test1(); */
+	test2();
 
 	cout << endl;
 	return 0;
@@ -34,7 +37,7 @@ void test1() {
 	/* percolateDown(h, 0); */
 
 	// delete max value of the heap
-	cout << "\nI have just removed max value in Heap: " << deleteMax(h) << endl;
+	cout << "\nI have just removed first element (max value) in Heap: " << deleteMax(h) << endl;
 
 	cout << endl;
 	printHeap(h);

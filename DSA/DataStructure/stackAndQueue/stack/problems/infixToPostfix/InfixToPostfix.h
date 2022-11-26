@@ -31,25 +31,36 @@
  * output.
  *
  * - Algorithm:
- * 		a) Create a stack
- * 		b) For each character eachCharacter in the input stream {
- * 			1) If eachCharacter is an Operand Then output eachCharacter
-	* 		2) If eachCharacter is a right parentheses Then pop and output tokens until
-	* 		a left parentheses is popped (but not output)
-	* 		3) If eachCharacter is an operator or left parentheses Then pop and output tokens
-	* 		util one of lower priority than eachCharacter is encountered or a left parentheses
-	* 		is encountered or the stack is empty and push eachCharacter
-	* 	}
-	* 	c) pop and output tokens until the stack is empty
-	*
-	* A*B-(C+D)+E = AB*CD+-E+
+ *   FUNCTION void infixToPostfix(string expression)
+ * 		CREATE a stack
+ * 		LOOP through the input stream
+ * 			IF encounter an Operand 
+ * 				OUTPUT eachCharacter
+ * 			ELSE IF encounter a right parentheses 
+ * 				WHILE a left parentheses is not POPPED (but not OUTPUT)
+ * 					POP and OUTPUT tokens
+ * 				END WHILE
+ * 			ELSE IF encounter an operator or left parentheses 
+ * 				POP and OUTPUT tokens 
+ * 				WHILE a left parentheses is not encountered and token's priority is greater
+ * 				than or equal to eachCharacter's token
+ * 					POP and OUTPUT tokens
+ * 				END WHILE
+ * 				PUSH eachCharacter into stack
+ * 			END IF
+ * 		END LOOP
+ * 		WHILE the stack is not empty
+ * 			POP and OUTPUT tokens 
+ * 		END WHILE
+ *
+ * VD: A*B-(C+D)+E = AB*CD+-E+
  */
 
 
 void infixToPostfix(const char *expression);
 
-int checkChar(const char *operator, char eachCharacter);
+int checkChar(const char *operatorToCal, char eachCharacter);
 
-int getPriority(int priority[], const char *operator, char eachCharacter);
+int getPriority(int priority[], const char *operatorToCal, char eachCharacter);
 
 #endif

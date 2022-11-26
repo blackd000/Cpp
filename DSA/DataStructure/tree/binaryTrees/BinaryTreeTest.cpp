@@ -22,15 +22,19 @@ int main() {
 
 	cout << "\nPre Order DLR\n";
 	preOrderDLR(testTree, "root"); // 1 2 4 18 9 5 10 3 6 7
+	cout << "\nPre Order DLR using stack\n";
+	preOrderDLRStack(testTree);
 
-	cout << "\nIn Order DLR\n";
-	inOrderLDR(testTree, "root");
+	/* cout << "\nIn Order LDR\n"; */
+	/* inOrderLDR(testTree, "root"); */
+	/* cout << "\nIn Order LDR using stack\n"; */
+	/* inOrderLDRStack(testTree); */
 
-	cout << "\nPost Order DLR\n";
-	postOrderLRD(testTree, "root");
+	/* cout << "\nPost Order LRD\n"; */
+	/* postOrderLRD(testTree, "root"); */
 
-	cout << "\nLevel Order DLR\n";
-	levelOrder(testTree);
+	/* cout << "\nLevel Order DLR\n"; */
+	/* levelOrder(testTree); */
 
 	deleteBinaryTree(testTree);
 

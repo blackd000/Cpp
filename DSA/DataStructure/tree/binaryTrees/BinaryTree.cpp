@@ -13,20 +13,20 @@
 void insertElement(BinaryTreeNode *root, int data) {
 	BinaryTreeNode *newNode = new BinaryTreeNode(data);
 
-	if (!root) {
+	if (root == NULL) {
 		root = newNode;
 		return;
 	}
+
 	queue<BinaryTreeNode *> Q;
-	BinaryTreeNode *tempTree = NULL;
 
 	Q.push(root);
 
 	while(!Q.empty()) {
-		tempTree = Q.front();
+		BinaryTreeNode *tempTree = Q.front();
 		Q.pop();
 
-		if (tempTree->left) {
+		if (tempTree->left != NULL) {
 			/* enQueue(Q, tempTree->left); */
 			Q.push(tempTree->left);
 		} else {
@@ -34,7 +34,7 @@ void insertElement(BinaryTreeNode *root, int data) {
 			return;
 		}
 
-		if (tempTree->right) {
+		if (tempTree->right != NULL) {
 			/* enQueue(Q, tempTree->right); */
 			Q.push(tempTree->right);
 		} else {
@@ -44,6 +44,7 @@ void insertElement(BinaryTreeNode *root, int data) {
 	}
 }
 
+// preOrder Traversal using recursion and using stack
 void preOrderDLR(BinaryTreeNode *root, const char *position) {
 	if (root) {
 		cout << position << " -> " << root->data << endl;
@@ -52,11 +53,72 @@ void preOrderDLR(BinaryTreeNode *root, const char *position) {
 	}
 }
 
+void preOrderDLRStack(BinaryTreeNode *root) {
+	if (root == NULL) {
+		cout << "Cay rong\n";
+		return;
+	}
+
+	stack<BinaryTreeNode *> S;
+
+	BinaryTreeNode *currentNode = root;
+
+	while (true) {
+		while (currentNode != NULL) {
+			cout << currentNode->data << " ";
+
+			S.push(currentNode);
+
+			currentNode = currentNode->left;
+		}
+
+		if (S.empty()) {
+			break;
+		}
+
+		currentNode = S.top();
+		S.pop();
+
+		currentNode = currentNode->right;
+	}
+}
+
+// inOrder Traversal using recursion and using stack
 void inOrderLDR(BinaryTreeNode *root, const char *position) {
 	if (root) {
 		inOrderLDR(root->left, "left");
 		cout << position << " -> " << root->data << endl;
 		inOrderLDR(root->right, "right");
+	}
+}
+
+void inOrderLDRStack(BinaryTreeNode *root) {
+	if (root == NULL) {
+		cout << "Cay rong\n";
+		return;
+	}
+
+	stack<BinaryTreeNode *> S;
+
+	BinaryTreeNode *currentNode = root;
+
+	while (true) {
+		while (currentNode != NULL) {
+			S.push(currentNode);
+
+			currentNode = currentNode->left;
+		}
+
+		if (S.empty()) {
+			break;
+		}
+
+		currentNode = S.top();
+		S.pop();
+
+		cout << currentNode->data << " ";
+
+		currentNode = currentNode->right;
 	}
 }
 

@@ -21,7 +21,9 @@ void insertInLinkedList(Node **head, int data, int position) {
 	newNode = createNode(data);
 
 	if (position == 0) { // inserting at the beginning
+		// Update the next pointer of new node, to point to the current head
 		newNode->next = *head;
+		// Update head pointer to point to the new node
 		*head = newNode;
 	} else { // traverse the list until reach the position
 		int index = 0;
