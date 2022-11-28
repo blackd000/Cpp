@@ -11,7 +11,7 @@ using std::endl;
 // 		1) If length is less than or equal to 1 (only 1 element remain in array) 
 // 		then return (base case).
 // 		2) Find the middle point to divide the array into two halves (mid = n / 2)
-// 		3) Create two array, left array has mid size, right array has n - mid size
+// 		3) Create two array, left array has 'mid' size, right array has 'n - mid' size
 // 		4) Call mergeSort() for left array
 // 		5) Call mergeSort() for right array
 // 		6) Call merge() to merge the two halves SORTED array in step 4 and 5
